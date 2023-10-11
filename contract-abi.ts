@@ -30,13 +30,10 @@ export const abi = [
     type: 'event',
   },
   {
-    inputs: [ {
-      name: 'number',
-      type: 'uint32',
-    }],
+    inputs: [],
     name: 'safeMint',
     outputs: [],
-    stateMutability: 'nonpayable',
+    stateMutability: 'payable',
     type: 'function',
   },
   {

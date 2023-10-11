@@ -11,6 +11,8 @@ import {
 } from 'wagmi';
 import { abi } from '../contract-abi';
 import FlipCard, { BackCard, FrontCard } from '../components/FlipCard';
+import { parseEther } from 'viem';
+import { parse } from 'path';
 
 const contractConfig = {
   address: '0x842c628787e1064b9f27d74a84b10fc59801e312',
@@ -27,7 +29,7 @@ const Home: NextPage = () => {
   const { config: contractWriteConfig } = usePrepareContractWrite({
     ...contractConfig,
     functionName: 'safeMint',
-    args: [1]
+    value: parseEther('50')
   });
 
   const {
@@ -85,7 +87,7 @@ const Home: NextPage = () => {
             {mounted && isConnected && !isMinted && (
               <button
                 style={{ marginTop: 24 }}
-                disabled={isMintLoading || isMintStarted}
+                disabled={!safeMint || isMintLoading || isMintStarted}
                 className="button"
                 data-mint-loading={isMintLoading}
                 data-mint-started={isMintStarted}
